@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Test from './components/test/test'
 import Form from './components/test/form'
+import Textarea from './components/test/textarea'
 class App extends Component {
   render() {
     return (
@@ -13,6 +14,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <Form></Form>
+        <Textarea></Textarea>
       </div>
     );
   }
