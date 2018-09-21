@@ -37,22 +37,44 @@ export default class test extends Component {
         </button>
       );
     }
+
     const isLogIn = this.state.isLogIn;
     // const messages = ['React', 'Re: React', 'Re:Re: React'];
     const messages = ['React', 'Re: React', 'Re:Re: React'];
 
 
-    const numbers = [1,2,3,4,5];
+    const numbers = [1, 2, 3, 4, 5, 5, 5, 5];
     const double = numbers.map((number) => number * 2);
-    console.log(double)
 
+    const messageItems = messages.map((message, index) =>
+      <li key={index}>{message}</li>)
 
 
     let button = null;
-    if(isLogIn){
-      button = <LogoutButton onClick={this.handleLogoutClick.bind(this)} />;
-    }else{
-      button = <LoginButton onClick={this.handleLoginClick.bind(this)} />;
+    if (isLogIn) {
+      button = <LogoutButton onClick={this.handleLogoutClick.bind(this)}/>;
+    } else {
+      button = <LoginButton onClick={this.handleLoginClick.bind(this)}/>;
+    }
+
+    function ListItem(props) {
+      // 这里不需要指定key
+      return <li>{props.value}</li>
+    }
+
+    function NumberList(props) {
+      const numbers = props.numbers;
+      // const listItems = numbers.map((number) =>
+      //   <ListItem key={number.toString()} value={number}></ListItem>
+      // );
+      return (
+        <ul>
+          {/*{listItems}*/}
+          {numbers.map((number) =>
+            <ListItem key={number.toString()} value={number}></ListItem>
+          )}
+        </ul>
+      )
     }
 
     return (
@@ -70,7 +92,10 @@ export default class test extends Component {
             You have {messages.length} unread messages.
           </h2>
           }
+          {double}
         </div>
+        <ul>{messageItems}</ul>
+        <NumberList numbers={numbers}></NumberList>
       </div>
     )
   }
