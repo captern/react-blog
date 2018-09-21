@@ -4,6 +4,7 @@ import './App.css';
 import Test from './components/test/test'
 import Form from './components/test/form'
 import Textarea from './components/test/textarea'
+import Select from './components/test/select'
 class App extends Component {
   render() {
     return (
@@ -15,6 +16,7 @@ class App extends Component {
         </header>
         <Form></Form>
         <Textarea></Textarea>
+        <Select></Select>
       </div>
     );
   }
