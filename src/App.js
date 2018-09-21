@@ -5,6 +5,7 @@ import Test from './components/test/test'
 import Form from './components/test/form'
 import Textarea from './components/test/textarea'
 import Select from './components/test/select'
+import Inputs from './components/test/inputs'
 class App extends Component {
   render() {
     return (
@@ -17,6 +18,7 @@ class App extends Component {
         <Form></Form>
         <Textarea></Textarea>
         <Select></Select>
+        <Inputs></Inputs>
       </div>
     );
   }
