@@ -43,7 +43,7 @@ export default class test extends Component {
     const messages = ['React', 'Re: React', 'Re:Re: React'];
 
 
-    const numbers = [1, 2, 3, 4, 5, 5, 5, 5];
+    const numbers = [1, 2, 5, 5];
     const double = numbers.map((number) => number * 2);
 
     const messageItems = messages.map((message, index) =>

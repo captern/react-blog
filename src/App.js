@@ -6,6 +6,7 @@ import Form from './components/test/form'
 import Textarea from './components/test/textarea'
 import Select from './components/test/select'
 import Inputs from './components/test/inputs'
+// import Promotion from './components/test/promotion'
 class App extends Component {
   render() {
     return (
@@ -19,6 +20,7 @@ class App extends Component {
         <Textarea></Textarea>
         <Select></Select>
         <Inputs></Inputs>
+        {/*<Promotion></Promotion>*/}
       </div>
     );
   }
