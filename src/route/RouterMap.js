@@ -8,10 +8,15 @@ const AsyncHome = Loadable({
   loader: () => import('../pages/App.js'),
   loading: MyLoadingComponent
 });
+const AsyncIndex = Loadable({
+  loader: () => import('../pages/Index.js'),
+  loading: MyLoadingComponent
+});
 export default ()=>{
   return(
     <Switch>
       <Route exact path='/' component={ AsyncHome }/>
+      <Route exact path='/index' component={ AsyncIndex }/>
     </Switch>
   )
 }
