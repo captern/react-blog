@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Router} from 'react-router-dom'
 import RouterMap from './RouterMap'
+import '../components/globalcss/index.scss'
 
 import SwitchAnimate from '../components/switch'
 import Header from '../components/header'
@@ -35,7 +36,7 @@ export default class App extends Component{
   render(){
     return(
       <Router history={history}>
-        <div>
+        <div className="main">
           <Header history = {history}  isRoute={this.isRoute.bind(this)}/>
           <RouterMap/>
           {this.state.isRouter?<SwitchAnimate type = 'leave' callback={this.clearAnimate.bind(this)}/>:''}

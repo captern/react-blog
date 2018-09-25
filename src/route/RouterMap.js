@@ -16,7 +16,7 @@ export default ()=>{
   return(
     <Switch>
       <Route exact path='/' component={ AsyncHome }/>
-      <Route exact path='/index' component={ AsyncIndex }/>
+      <Route exact path='/work' component={ AsyncIndex }/>
     </Switch>
   )
 }
