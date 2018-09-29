@@ -1,54 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-// import App from './App';
-import './components/globalcss/init.scss'
-import App from './route/root';
+import {createStore, applyMiddleware, compose} from 'redux'
+import thunk from 'redux-thunk'
+import {Provider} from 'react-redux'
+import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
+import reducers from './reducer'
+import './config'
 import registerServiceWorker from './registerServiceWorker';
-import * as imgUrls from './components/imgurls'
-// M站快速点击
-import FastClick from 'fastclick'
 
-FastClick.attach(document.body);
 
-// 预加载图片
-let myloadingimgs = []
-for(let i in imgUrls){
-  myloadingimgs.push(imgUrls[i])
-}
-console.log(myloadingimgs)
-// loading动画dom
-var loadingDiv = document.getElementById('pageloading')
-// 判断浏览器兼容前缀
-var useTransform = (loadingDiv.style['msTransform'] && 'msTransform')
-  || (loadingDiv.style['webkitTransform'] && 'webkitTransform')
-  || (loadingDiv.style['MozTransform'] && 'MozTransform')
-  || (loadingDiv.style['OTransform'] && 'OTransform')
-  || 'transform';
-var imgloadindex = 0        // 已经加载图片数量
-var imgNum = 0              // 图片总数
-myloadingimgs.map(urls => {
-  for(let i in urls){
-    imgNum ++
-    let img = new Image()
-    img.onload = () => {
-      // 当图片加载成功时，计数加一
-      imgloadindex++
-      reactloading()
-    }
-    img.src = urls[i]
-  }
-})
+import Login from './container/login/login'
+import Register from './container/register/register'
+import AuthRouter from './component/authrouter/authrouter'
+// import {counter} from './index.redux'
 
-function reactloading(){
-  const styles = 'scaleX(' + (imgloadindex / (imgNum - 3)).toFixed(2) + ')';
-  loadingDiv.style[useTransform] = styles;
-  if(imgloadindex >= imgNum-1){
-    ReactDOM.render(<App />, document.getElementById('root'));
-    console.log('1212')
-    loadingDiv = myloadingimgs = useTransform = imgloadindex = imgNum = null
-  }
 
-}
-// ReactDOM.render(<App/>, document.getElementById('root'));
+// compose 是专门用于组合函数的，为了启用chrome浏览器的resux调试工具
+// const reduxDevtools = window.devToolsExtension ? window.devToolsExtension(): f=>f
+// reduxDevtools 是为了检查本地是否有调试工具
+
+const store = createStore(reducers, compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>
+        <AuthRouter></AuthRouter>
+        <Route path='/login' component={Login}></Route>
+        <Route path='/register' component={Register}></Route>
+      </div>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
