@@ -15,7 +15,6 @@ class Login extends React.Component{
     return(
       <div>
         <Logo/>
-        <h2>登录页面</h2>
         <WingBlank>
           <List>
             <InputItem>用户</InputItem>

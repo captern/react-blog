@@ -12,6 +12,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Login from './container/login/login'
 import Register from './container/register/register'
 import AuthRouter from './component/authrouter/authrouter'
+import './index.css'
 // import {counter} from './index.redux'
 
 
