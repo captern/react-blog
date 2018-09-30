@@ -4,6 +4,7 @@
 2. mongo 来启动本机 mongo 数据库
 3. antd-mobile 的css样式放在 dist 目录下边
 4. bael-plugin-import 是为了 antd 的按需加载
+5. 使用 utility 进行 md5 的加密
 
 
 

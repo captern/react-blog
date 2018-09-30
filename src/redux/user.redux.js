@@ -1,9 +1,11 @@
 import axios from 'axios'
+import {getRedirectPath} from '../util'
 // reducers
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 
 const initState = {
+  redirectTo: '',     // 成功之后的跳转地址
   isAuth: false,
   msg: '',
   user: '',
@@ -15,7 +17,8 @@ const initState = {
 export function user(state = initState, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      return {...state, msg: '', isAuth: true, ...action.payload};
+      return {...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload};
+      // getRedirectPath(action.payload)  用于判断跳转的信息
     case ERROR_MSG:
       return {...state, msg: action.msg, isAuth: false};
     default:

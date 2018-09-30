@@ -2,17 +2,19 @@ import React from 'react'
 import Logo from '../../component/logo/logo'
 import {List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 
-class Login extends React.Component{
+class Login extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.register = this.register.bind(this)
   }
-  register(){
-    console.log(this.props)
+
+  register() {
+    console.log(this.props);
     this.props.history.push('/register')
   }
-  render(){
-    return(
+
+  render() {
+    return (
       <div>
         <Logo/>
         <WingBlank>
@@ -29,4 +31,5 @@ class Login extends React.Component{
     )
   }
 }
+
 export default Login
