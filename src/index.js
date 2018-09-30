@@ -9,9 +9,10 @@ import './config'
 import registerServiceWorker from './registerServiceWorker';
 
 
+import AuthRouter from './component/authrouter/authrouter'
 import Login from './container/login/login'
 import Register from './container/register/register'
-import AuthRouter from './component/authrouter/authrouter'
+import BossInfo from './container/bossinfo/bossinfo'
 import './index.css'
 // import {counter} from './index.redux'
 
@@ -32,9 +33,9 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <AuthRouter></AuthRouter>
-        <Route path='/boss' component={Boss}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Register}></Route>
+        <Route path='/bossinfo' component={BossInfo}></Route>
       </div>
     </BrowserRouter>
   </Provider>,

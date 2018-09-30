@@ -45,7 +45,7 @@ class Login extends React.Component {
         <WingBlank>
           <List>
             <InputItem onChange={v => this.handleChange('user', v)}>用户</InputItem>
-            <InputItem onChange={v => this.handleChange('pwd', v)}>密码</InputItem>
+            <InputItem onChange={v => this.handleChange('pwd', v)} type='password'>密码</InputItem>
           </List>
           <WhiteSpace/>
           <Button type='primary' onClick={this.handleLogin}>登录</Button>
