@@ -5,5 +5,5 @@ const app = express();
 
 app.use('/user', userRouter)
 app.listen(9093, function () {
-  console.log('node app')
+  console.log('nodenode app')
 });
