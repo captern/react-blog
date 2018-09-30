@@ -4,13 +4,13 @@ import {getRedirectPath} from '../util'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
+const LOAD_DATA = 'LOAD_DATA';          //读取用户本地cookie的数据方法
 
 const initState = {
   redirectTo: '',     // 成功之后的跳转地址
   isAuth: false,
   msg: '',
   user: '',
-  pwd: '',
   type: ''
 };
 
@@ -23,6 +23,9 @@ export function user(state = initState, action) {
     case LOGIN_SUCCESS:
       // 登录成功的跳转
       return {...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload};
+    // 本地有缓存，然后之间将数据存储金redux里面保存
+    case LOAD_DATA:
+      return {...state, ...action.payload};
     case ERROR_MSG:
       return {...state, msg: action.msg, isAuth: false};
     default:
@@ -42,6 +45,11 @@ function errorMsg(msg) {
   return {type: ERROR_MSG, msg: msg}
   // return {msg, type: ERROR_MSG}
   // 两种写作规范，如果键和值相同，可以简写，但是必须放在前面
+}
+
+// 获取本地数据，判断是哦否登录
+export function loadData(userinfo) {
+  return {type: LOAD_DATA, payload: userinfo}
 }
 
 // 登录模块
