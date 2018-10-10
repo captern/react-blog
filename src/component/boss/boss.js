@@ -1,7 +1,13 @@
 import React from 'react'
 import axios from 'axios'
+import {connect} from 'react-redux'
 import {Card, WhiteSpace, WingBlank} from 'antd-mobile'
+import {getUserList} from '../../redux/chatuser.redux'
 
+@connect(
+  state => state.chatuser,
+  {getUserList}
+)
 class Boss extends React.Component {
   constructor(props) {
     super(props);
@@ -11,11 +17,12 @@ class Boss extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/user/list?type=genius').then(res => {
-      if (res.data.code === 0) {
-        this.setState({data: res.data.data})
-      }
-    })
+    this.props.getUserList('genius')
+    // axios.get('/user/list?type=genius').then(res => {
+    //   if (res.data.code === 0) {
+    //     this.setState({data: res.data.data})
+    //   }
+    // })
   }
 
   render() {
@@ -24,7 +31,7 @@ class Boss extends React.Component {
     return (
       <WingBlank>
         <WhiteSpace/>
-        {this.state.data.map(v => (
+        {this.props.userList.map(v => (
           // 如果用户有头像，则返回，否则不展示
           v.avatar ? <Card key={v._id}>
             <Header
@@ -34,10 +41,10 @@ class Boss extends React.Component {
               extra={<span>{v.title}</span>}
             />
             <Body>
-              {/*将换行符也保存下来*/}
-              {v.desc.split('\n').map(v=>(
-                <div key={v}>{v}</div>
-              ))}
+            {/*将换行符也保存下来*/}
+            {v.desc.split('\n').map(v => (
+              <div key={v}>{v}</div>
+            ))}
             </Body>
           </Card> : null
         ))}
