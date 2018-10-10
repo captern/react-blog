@@ -9,15 +9,12 @@ import {update} from '../../redux/user.redux'
   state => state.user,
   {update}
 )
-class BossInfo extends React.Component {
+class GeniusInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      company: '',
-      money: '',
-      desc: '',
-
+      desc: ''
     }
   }
 
@@ -33,20 +30,18 @@ class BossInfo extends React.Component {
     return (
       <div>
         {redirect && redirect !== path ? <Redirect to={redirect}></Redirect> : null}
-        <NavBar mode='dark'>Boss 完善信息</NavBar>
+        <NavBar mode='dark'>牛人 完善信息</NavBar>
         <AvatarSelector selectAvatar={(imgname) => {
           this.setState({
             avatar: imgname
           })
         }}/>
-        <InputItem onChange={(v) => this.onChange('title', v)}>招聘职位</InputItem>
-        <InputItem onChange={(v) => this.onChange('company', v)}>公司名称</InputItem>
-        <InputItem onChange={(v) => this.onChange('money', v)}>职位薪资</InputItem>
-        <TextareaItem onChange={(v) => this.onChange('desc', v)} rows={3} autoHeight title='职位简介'/>
+        <InputItem onChange={(v) => this.onChange('title', v)}>求职岗位</InputItem>
+        <TextareaItem onChange={(v) => this.onChange('desc', v)} rows={3} autoHeight title='个人简介'/>
         <Button type='primary' onClick={() => this.props.update(this.state)}>保存</Button>
       </div>
     )
   }
 }
 
-export default BossInfo
+export default GeniusInfo

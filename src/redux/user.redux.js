@@ -35,9 +35,14 @@ export function user(state = initState, action) {
   }
 }
 
-function authSuccess(data) {
+// function authSuccess(data) {
+//   return {type: AUTH_SUCCESS, payload: data}
+// }
+function authSuccess(obj) {
+  const {pwd, ...data} = obj;    //次写法是为了过滤掉 内容中的 pwd 字段
   return {type: AUTH_SUCCESS, payload: data}
 }
+
 // function loginSuccess(data) {
 //   return {type: LOGIN_SUCCESS, payload: data}
 // }
