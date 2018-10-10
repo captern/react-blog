@@ -14,6 +14,22 @@ Router.get('/list', function (req, res) {
     return res.json(doc)
   })
 })
+// 完善信息
+Router.post('/update', function (req, res) {
+  const userId = req.cookies.userId
+  if (!userId) {
+    return json.dumps({code: 1})
+  }
+  const body = req.body
+  User.findByIdAndUpdate(userId, body, function (err, doc) {
+    // Object.assign 数据合并
+    const data = Object.assign({}, {
+      user: doc.user,
+      type: doc.type
+    }, body)
+    return res.json({code: 0, data})
+  })
+});
 // 登录
 Router.post('/login', function (req, res) {
   const {user, pwd} = req.body;         //获取用户名和密码
