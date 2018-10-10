@@ -6,7 +6,7 @@ class AvatarSelector extends React.Component {
   static propTypes = {
     selectAvatar: PropTypes.func
     // selectAvatar: PropTypes.func.isRequired
-  }
+  };
   constructor(props) {
     super(props);
     this.state = {}

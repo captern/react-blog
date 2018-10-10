@@ -14,6 +14,7 @@ import Login from './container/login/login'
 import Register from './container/register/register'
 import BossInfo from './container/bossinfo/bossinfo'
 import GeniusInfo from './container/geniusinfo/geniusinfo'
+import DashBoard from './component/dashboard/dashboard'
 import './index.css'
 // import {counter} from './index.redux'
 
@@ -27,19 +28,20 @@ const store = createStore(reducers, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
-function Boss() {
-  return <h2>boss</h2>
-}
+
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <AuthRouter></AuthRouter>
-        <Route path='/login' component={Login}></Route>
-        <Route path='/register' component={Register}></Route>
-        <Route path='/bossinfo' component={BossInfo}></Route>
-        <Route path='/geniusinfo' component={GeniusInfo}></Route>
+        <AuthRouter/>
+        <Switch>
+          <Route path='/login' component={Login}/>
+          <Route path='/register' component={Register}/>
+          <Route path='/bossinfo' component={BossInfo}/>
+          <Route path='/geniusinfo' component={GeniusInfo}/>
+          <Route component={DashBoard}></Route>
+        </Switch>
       </div>
     </BrowserRouter>
   </Provider>,
