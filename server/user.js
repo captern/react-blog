@@ -7,11 +7,12 @@ const User = model.getModel('user');
 const _filter = {'pwd': 0, '__v': 0};     //统一控制后台返回数据，不显示 pwd 和 __v 版本号
 // 作为调试列表
 Router.get('/list', function (req, res) {
+  const {type} = req.query
   // 清空所有数据
   // User.remove({}, function (err, doc) {
   // })
-  User.find({}, function (err, doc) {
-    return res.json(doc)
+  User.find({type}, function (err, doc) {
+    return res.json({code: 0, data: doc})
   })
 })
 // 完善信息
