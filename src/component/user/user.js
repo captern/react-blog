@@ -23,7 +23,7 @@ class User extends React.Component {
         {text: '取消'},
         {
           text: '确认', onPress: () => {
-            // browserCookies.erase('userId');
+            browserCookies.erase('userId');
             this.props.logoutSubmit()
           }
         }
