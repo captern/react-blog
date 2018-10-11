@@ -6,6 +6,7 @@ import {getRedirectPath} from '../util'
 const AUTH_SUCCESS = 'AUTH_SUCCESS';        //包括登录注册成功
 const ERROR_MSG = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';          //读取用户本地cookie的数据方法
+const LOGOUT = 'LOGOUT';          //退出登录，清楚 redux
 
 const initState = {
   redirectTo: '',     // 成功之后的跳转地址
@@ -30,6 +31,8 @@ export function user(state = initState, action) {
       return {...state, ...action.payload};
     case ERROR_MSG:
       return {...state, msg: action.msg, isAuth: false};
+    case LOGOUT:
+      return {...initState, redirectTo:'/login'};
     default:
       return state
   }
@@ -60,6 +63,11 @@ function errorMsg(msg) {
 // 获取本地数据，判断是哦否登录
 export function loadData(userinfo) {
   return {type: LOAD_DATA, payload: userinfo}
+}
+
+// 退出登录清楚redux数据
+export function logoutSubmit() {
+  return {type: LOGOUT}
 }
 
 // 登录模块
