@@ -7,8 +7,8 @@ class UserCard extends React.Component {
 
   static propTypes = {
     // 暂时这样写，纺织报错
-    userLit: PropTypes.array.isRequired
-    // userLit: PropTypes.array
+    // userLit: PropTypes.array.isRequired
+    userLit: PropTypes.array
   };
 
   render() {
