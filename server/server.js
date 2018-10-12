@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 // 引入 cookieParser 用来解析 cookie
 // 引入socket.io
+const model = require('./model');
+const Chat = model.getModel('chat');
 
 // 将 express 和 io 相关联起来
 const app = express();
@@ -13,8 +15,13 @@ const io = require('socket.io')(server);
 io.on('connection', function (socket) {
   socket.on('sendmsg', function (data) {
     console.log(data)
-    // 将事件广播至全局，让所有人都知道
-    io.emit('recvmsg', data)
+    // 将事件广播至全局，让所有人都知道n
+    // io.emit('recvmsg', data)
+    const {from, to, msg} = data;
+    const chatId = [from, to].sort().join('_');
+    Chat.create({chatId, from, to, content: msg}, function (err, doc) {
+      io.emit('recvmsg', Object.assign({}, doc._doc))
+    })
   })
 })
 

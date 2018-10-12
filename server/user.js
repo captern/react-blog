@@ -18,12 +18,12 @@ Router.get('/list', function (req, res) {
 });
 // 获取聊天信息
 Router.get('/getmsglist', function (req, res) {
-  const user = req.cookies.user
-  console.log(user)
+  const user = req.cookies.userId
+  console.log(user + 'qwwqwqs')
   // Chat.find({'$or': [{from: user, to: user}]}, function (err, doc) {
   Chat.find({}, function (err, doc) {
     if (!err) {
-      return res.json({code: 0, msg: doc})
+      return res.json({code: 0, msgs: doc})
     }
   })
 });
