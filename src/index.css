@@ -1,21 +1,42 @@
-.error-msg{
-  color: #f50;
-  text-align: center;
+.error-msg {
+    color: #f50;
+    text-align: center;
 }
-.fixd-header .am-navbar{
-  position: fixed;
-  top: 0;
-  width: 100%;
+
+.fixd-header .am-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
-.am-tab-bar{
-  position: fixed;
-  z-index: -1;
-  bottom: 0;
-  width: 100%;
+
+.am-tab-bar {
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+    width: 100%;
 }
-.page-content{
-  padding: 45px 5px;
+
+.page-content {
+    padding: 45px 5px;
 }
-.am-card-header-content img{
-  width: 24px;
+
+.am-card-header-content img {
+    width: 24px;
+}
+
+/*聊天页面*/
+#chat-page .chat-me .am-list-extra {
+    flex-basis: auto;
+}
+
+#chat-page .chat-me .am-list-content {
+    padding-right: 15px;
+    text-align: right;
+}
+
+.stick-footer {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
