@@ -3,8 +3,12 @@ import PropTypes from "prop-types";
 import {TabBar} from 'antd-mobile'
 // 不是路由组件，所以需要 withRouter 路由组件获取路由信息
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 @withRouter
+@connect(
+  state => state.chat
+)
 class NavLinkBar extends React.Component {
   // 定义组件传递参数的格式校验
   static propTypes = {
@@ -19,6 +23,7 @@ class NavLinkBar extends React.Component {
       <TabBar>
         {navList.map(v => (
           <TabBar.Item
+            badge={this.props.unread}           // 右上角未读信息展示
             key={v.path}
             title={v.text}
             icon={{uri: require(`../img/smile.png`)}}

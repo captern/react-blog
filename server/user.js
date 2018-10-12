@@ -6,6 +6,11 @@ const model = require('./model');
 const Chat = model.getModel('chat');
 const User = model.getModel('user');
 const _filter = {'pwd': 0, '__v': 0};     //统一控制后台返回数据，不显示 pwd 和 __v 版本号
+
+// 清空所有数据
+// Chat.remove({}, function (req, res) {
+//
+// })
 // 作为调试列表
 Router.get('/list', function (req, res) {
   const {type} = req.query
