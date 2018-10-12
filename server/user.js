@@ -3,6 +3,7 @@ const utils = require('utility');        // utility 为了实现md5加密
 const Router = express.Router();
 const model = require('./model');
 
+const Chat = model.getModel('chat');
 const User = model.getModel('user');
 const _filter = {'pwd': 0, '__v': 0};     //统一控制后台返回数据，不显示 pwd 和 __v 版本号
 // 作为调试列表
@@ -14,7 +15,18 @@ Router.get('/list', function (req, res) {
   User.find({type}, function (err, doc) {
     return res.json({code: 0, data: doc})
   })
-})
+});
+// 获取聊天信息
+Router.get('/getmsglist', function (req, res) {
+  const user = req.cookies.user
+  console.log(user)
+  // Chat.find({'$or': [{from: user, to: user}]}, function (err, doc) {
+  Chat.find({}, function (err, doc) {
+    if (!err) {
+      return res.json({code: 0, msg: doc})
+    }
+  })
+});
 // 完善信息
 Router.post('/update', function (req, res) {
   const userId = req.cookies.userId
