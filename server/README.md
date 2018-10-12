@@ -20,3 +20,7 @@
 
 
 1、express 依赖 cookie-parser 来进行用户cookie验证
+
+
+
+6、inputForm 是一个高阶组件的简单实例
