@@ -14,7 +14,6 @@ const io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
   socket.on('sendmsg', function (data) {
-    console.log(data)
     // 将事件广播至全局，让所有人都知道n
     // io.emit('recvmsg', data)
     const {from, to, msg} = data;

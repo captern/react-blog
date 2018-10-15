@@ -25,7 +25,7 @@ const models = {
     'to': {type: String, require: true},
     'read': {type: Boolean, default: false},      // 只是对 to 的对象有效，因为是我发的，我肯定读过
     'content': {type: String, require: true, default: ''},
-    'create_time': {type: Number, default: new Date().getTime()},
+    'create_time': {'type': Number, 'default': new Date().getTime()},
   }
 };
 for (let m in models) {
