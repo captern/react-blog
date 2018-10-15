@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {List} from 'antd-mobile'
+import {List, Badge} from 'antd-mobile'
 
 @connect(
   state => state
@@ -28,11 +28,13 @@ class Msg extends React.Component {
           chatList.map(v => {
             const lastItem = this.getLast(v);
             const targetId = v[0].from === userId ? v[0].to : v[0].from;
+            // 获取未读消息的数量
+            const unreadNum = v.filter(v => !v.read && v.to === userId).length;
             const name = userInfo[targetId] ? userInfo[targetId].name : '';
             const avatar = userInfo[targetId] ? userInfo[targetId].avatar : '';
             return (
               <List key={lastItem._id}>
-                <Item thumb={require(`../img/${avatar}.png`)}>
+                <Item extra={<Badge text={unreadNum}/>} thumb={require(`../img/${avatar}.png`)}>
                   {lastItem.content}
                   <Brief>{name}</Brief>
                 </Item>
