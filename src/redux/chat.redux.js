@@ -22,29 +22,30 @@ export function chat(state = initState, action) {
         ...state,
         users: action.payload.users,
         chatMsg: action.payload.msgs,
-        unread: action.payload.msgs.filter(v => !v.read).length
+        unread: action.payload.msgs.filter(v => !v.read && v.to === action.payload.userId).length
       };
     case MSG_RECV:
-      return {...state, chatMsg: [...state.chatMsg, action.payload], unread: state.unread + 1};
+      const n = action.payload.to === action.userId ? 1 : 0;
+      return {...state, chatMsg: [...state.chatMsg, action.payload], unread: state.unread + n};
     // case MSG_READ:
     default:
       return state
   }
 }
 
-function msgList(msgs, users) {
-  return {type: 'MSG_LIST', payload: {msgs, users}}
+function msgList(msgs, users, userId) {
+  return {type: 'MSG_LIST', payload: {msgs, users, userId}}
 }
 
-function msgRecv(msg) {
-  return {type: 'MSG_RECV', payload: msg}
+function msgRecv(msg, userId) {
+  return {userId, type: 'MSG_RECV', payload: msg}
 }
 
 export function recvMsg() {
-  return dispatch => {
+  return (dispatch, getState) => {
     socket.on('recvmsg', function (data) {
-      console.log('recvmsg', data);
-      dispatch(msgRecv(data))
+      const userId = getState().user._id;
+      dispatch(msgRecv(data, userId))
     })
   }
 }
@@ -56,13 +57,12 @@ export function sendMsg({from, to, msg}) {
 }
 
 export function getMsgList() {
-  return dispatch => {
+  return (dispatch, getState) => {   // getState 可以获取应用里面所有的状态
     axios.get('/user/getmsglist').then(res => {
-      console.log(res)
-      console.log(res)
-      console.log(res)
+      console.log('getState', getState());
       if (res.status === 200 && res.data.code === 0) {
-        dispatch(msgList(res.data.msgs, res.data.users))
+        const userId = getState().user._id;
+        dispatch(msgList(res.data.msgs, res.data.users, userId))
       }
     })
   }
