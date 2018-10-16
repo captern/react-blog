@@ -79,7 +79,7 @@ Router.post('/login', function (req, res) {
       return res.json({code: 1, msg: '用户名或者密码错误'})
     }
     // 设置本地cookie，来存储我的登录信息
-    res.cookie('userId', doc._id)
+    res.cookie('userId', doc._id);
     return res.json({code: 0, data: doc})
   })
 });
